@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess the number</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Guess the number</h1>
+      <form class="input-field" id="guessForm">
+        <input type="number" id="numberInput" class="input" />
+        <input type="number" id="numberInput" class="input" />
+        <input type="number" id="numberInput" class="input" />
+        <input type="number" id="numberInput" class="input" />
+        <button id="checkButton" class="input__button">Check</button>
+      </form>
+      <div class="wrapper__counter">
+        <h3>Attempts</h3>
+        <h3 id="guesses"></h3>
+        <div class="counter--none">
+          <div class="counter green"></div>
+          <div id="greenCounter">0</div>
+          <div class="counter orange"></div>
+          <div id="orangeCounter">0</div>
+        </div>
+      </div>
+      <button id="resetButton" class="reset--button">Reset the game!</button>
+    </div>
+    <div id="messages" class="messages"></div>
+    <div class="description">
+      <h2>Welcome to the Guess the Numbers game!</h2>
+      <p>
+        The computer will generate 4 secret numbers. Your task is to try and
+        guess these numbers. Enter a 4-digit number, with digits ranging from 0
+        to 9 and no repetitions. If you guess a number and it's in the correct
+        position, the input will turn green. If you guess a number but it's not
+        in the correct position, the input will turn orange. You need to try and
+        guess all the numbers before exceeding 5 attempts. Good luck and have
+        fun guessing the numbers!
+      </p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
