@@ -112,11 +112,13 @@ input::-webkit-inner-spin-button {
 .messages {
   background-color: #fff;
   font-size: 24px;
+  font-weight: bold;
   text-align: center;
   margin-top: 2rem;
   padding: 1rem;
   border-radius: 8px;
   display: block;
+  width: 430px;
 }
 
 .messages:empty {
@@ -135,4 +137,18 @@ input::-webkit-inner-spin-button {
 
 .description h2 {
   margin-bottom: 1rem;
+}
+
+#winningGiphy {
+  width: 430px;
+  height: 200px;
+  margin-top: 1rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: none;
+}
+
+.giphy--display {
+  display: block !important;
 }
