@@ -16,11 +16,11 @@ let $gifWrap = document.getElementById("winningGiphy");
 function generateRandomNumber() {
   let result = [];
   let poolOfElement = [];
-  // creare un'insieme di elementi unici
+  // create a set of unique elements
   for (let i = 0; i <= 9; i++) {
     poolOfElement.push(i);
   }
-  // per 4 volte, generare un indice dall'insieme del pool
+  // 4 times: generate an index from the pool set
   for (let i = 0; i < 4; i++) {
     let randomIndex = Math.floor(Math.random() * poolOfElement.length);
     let randomElement = poolOfElement[randomIndex];
@@ -30,6 +30,7 @@ function generateRandomNumber() {
   return result;
 }
 
+//function
 function guessTheNumber(e) {
   e.preventDefault();
   let inputEl = [];
@@ -47,10 +48,9 @@ function guessTheNumber(e) {
     for (let j = 0; j < 4; j++) {
       if (i === j && guessNumbers[j] === inputEl[i]) {
         greenCounter += 1;
-        // la classe dell'input diventa verde
+        // input style became green
         $guessInputEl[j].classList.add("input--green");
-
-        // print on html
+        // input style became orange
       } else if (guessNumbers[j] === inputEl[i]) {
         orangeCounter += 1;
         $guessInputEl[i].classList.add("input--orange");
@@ -72,7 +72,7 @@ function guessTheNumber(e) {
     $gifWrap.classList.add("giphy--display");
   }
 }
-
+// reset values
 function reset() {
   guesses = 6;
   $guesses.innerHTML = guesses;
@@ -106,6 +106,7 @@ for (let i = 0; i < $guessInputEl.length; ++i) {
 
 reset();
 
+// create a random gif (taken from google)
 function generateGif() {
   // Initiate gifLoop for set interval
   let refresh;
