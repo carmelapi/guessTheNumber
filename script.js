@@ -3,12 +3,17 @@ let guesses;
 let guessNumbers;
 
 let $guesses = document.querySelector("#guesses");
-let $guessInputEl = document.querySelectorAll("#numberInput");
+let $guessInputEl = document.querySelectorAll(".input");
 let $greenNumber = document.querySelector("#greenCounter");
 let $orangeNumber = document.querySelector("#orangeCounter");
 let $messageEl = document.querySelector("#messages");
 let $formEl = document.querySelector("#guessForm");
 let $resetEl = document.querySelector("#resetButton");
+
+let $inputTriviaEl = document.querySelector("#inputTrivia");
+let $buttonTriviaEl = document.querySelector("#buttonTrivia");
+let $questionTrivia = document.querySelector("#questionTrivia");
+let $guessFormTrivia = document.querySelector("#guessFormTrivia");
 
 let $gifWrap = document.getElementById("winningGiphy");
 
@@ -44,17 +49,33 @@ function guessTheNumber(e) {
   console.log("inputEl", inputEl);
   console.log("guessNumbers", guessNumbers);
   // compare numbers
-  for (let i = 0; i < 4; i++) {
-    for (let j = 0; j < 4; j++) {
-      if (i === j && guessNumbers[j] === inputEl[i]) {
-        greenCounter += 1;
-        // input style became green
-        $guessInputEl[j].classList.add("input--green");
-        // input style became orange
-      } else if (guessNumbers[j] === inputEl[i]) {
-        orangeCounter += 1;
-        $guessInputEl[i].classList.add("input--orange");
-      }
+  // for (let i = 0; i < 4; i++) {
+  //   for (let j = 0; j < 4; j++) {
+  //     if (i === j && guessNumbers[j] === inputEl[i]) {
+  //       greenCounter += 1;
+  //       // input style became green
+  //       $guessInputEl[j].classList.add("input--green");
+  //       // input style became orange
+  //     } else if (guessNumbers[j] === inputEl[i]) {
+  //       orangeCounter += 1;
+  //       $guessInputEl[i].classList.add("input--orange");
+  //     }
+  //   }
+  // }
+
+  for (let i = 0; i < $guessInputEl.length; i++) {
+    let $inputEl = $guessInputEl[i];
+
+    let value = Number($inputEl.value);
+
+    if (value === guessNumbers[i]) {
+      // correct number and place
+      greenCounter += 1;
+      $inputEl.classList.add("input--green");
+    } else if (guessNumbers.includes(value)) {
+      // correct number but incorrect place
+      orangeCounter += 1;
+      $inputEl.classList.add("input--orange");
     }
   }
   $greenNumber.innerHTML = greenCounter;
@@ -90,21 +111,67 @@ function renderMessage(messages) {
   $messageEl.innerHTML = messages;
 }
 
-$formEl.addEventListener("submit", guessTheNumber);
-$resetEl.addEventListener("click", reset);
+function main() {
+  $formEl.addEventListener("submit", guessTheNumber);
+  $resetEl.addEventListener("click", reset);
 
-for (let i = 0; i < $guessInputEl.length; ++i) {
-  $guessInputEl[i].addEventListener("keydown", function (e) {
-    if (e.keyCode === 8 || e.keyCode === 46) {
-      return false;
-    }
-    if ($guessInputEl[i].value) {
-      e.preventDefault();
-    }
-  });
+  for (let i = 0; i < $guessInputEl.length; ++i) {
+    $guessInputEl[i].addEventListener("keydown", function (e) {
+      if (e.keyCode === 8 || e.keyCode === 46) {
+        return false;
+      }
+      if ($guessInputEl[i].value) {
+        e.preventDefault();
+      }
+    });
+  }
+
+  reset();
 }
 
-reset();
+let answerTrivia;
+
+async function getData() {
+  const url = "https://trivia-by-api-ninjas.p.rapidapi.com/v1/trivia";
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "153002e3damsh69b0f610173f915p1a6566jsn8afc77d77ddc",
+      "X-RapidAPI-Host": "trivia-by-api-ninjas.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+
+    answerTrivia = result[0].answer;
+    console.log(answerTrivia);
+    $questionTrivia.textContent = result[0].question;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+getData();
+
+function guessTrivia() {
+  let inputValueEl = $inputTriviaEl.value;
+  if (inputValueEl.toLowerCase() === answerTrivia.toLowerCase()) {
+    generateGif();
+    renderMessage("You win!");
+    $gifWrap.classList.add("giphy--display");
+  } else {
+    renderMessage("🥺 Try Again 🥺");
+  }
+}
+
+$guessFormTrivia.addEventListener("submit", function (e) {
+  e.preventDefault();
+  guessTrivia();
+});
+
+//---------------------------------------------
 
 // create a random gif (taken from google)
 function generateGif() {
@@ -153,3 +220,7 @@ function generateGif() {
   // Call Giphy API for new gif
   getGif();
 }
+
+// ------------------------
+
+main();
