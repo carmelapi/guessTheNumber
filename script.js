@@ -111,23 +111,21 @@ function renderMessage(messages) {
   $messageEl.innerHTML = messages;
 }
 
-function main() {
-  $formEl.addEventListener("submit", guessTheNumber);
-  $resetEl.addEventListener("click", reset);
+$formEl.addEventListener("submit", guessTheNumber);
+$resetEl.addEventListener("click", reset);
 
-  for (let i = 0; i < $guessInputEl.length; ++i) {
-    $guessInputEl[i].addEventListener("keydown", function (e) {
-      if (e.keyCode === 8 || e.keyCode === 46) {
-        return false;
-      }
-      if ($guessInputEl[i].value) {
-        e.preventDefault();
-      }
-    });
-  }
-
-  reset();
+for (let i = 0; i < $guessInputEl.length; ++i) {
+  $guessInputEl[i].addEventListener("keydown", function (e) {
+    if (e.keyCode === 8 || e.keyCode === 46) {
+      return false;
+    }
+    if ($guessInputEl[i].value) {
+      e.preventDefault();
+    }
+  });
 }
+
+reset();
 
 let answerTrivia;
 
@@ -222,5 +220,3 @@ function generateGif() {
 }
 
 // ------------------------
-
-main();

@@ -137,13 +137,19 @@ input::-webkit-inner-spin-button {
 }
 
 .description {
-  width: 70vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 80vw;
   margin-top: 2rem;
   background-color: rgb(129, 42, 211);
   padding: 3rem;
   border-radius: 5px;
   font-size: 18px;
   color: rgb(42, 10, 72);
+}
+.description-grid {
+  color: white;
 }
 
 .description h2 {
