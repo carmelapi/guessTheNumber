@@ -9,6 +9,8 @@ let $orangeNumber = document.querySelector("#orangeCounter");
 let $messageEl = document.querySelector("#messages");
 let $formEl = document.querySelector("#guessForm");
 let $resetEl = document.querySelector("#resetButton");
+let $clickDescription = document.querySelector("#clickDescription span");
+let $description = document.querySelector(".description");
 
 let $inputTriviaEl = document.querySelector("#inputTrivia");
 let $buttonTriviaEl = document.querySelector("#buttonTrivia");
@@ -48,20 +50,6 @@ function guessTheNumber(e) {
   }
   console.log("inputEl", inputEl);
   console.log("guessNumbers", guessNumbers);
-  // compare numbers
-  // for (let i = 0; i < 4; i++) {
-  //   for (let j = 0; j < 4; j++) {
-  //     if (i === j && guessNumbers[j] === inputEl[i]) {
-  //       greenCounter += 1;
-  //       // input style became green
-  //       $guessInputEl[j].classList.add("input--green");
-  //       // input style became orange
-  //     } else if (guessNumbers[j] === inputEl[i]) {
-  //       orangeCounter += 1;
-  //       $guessInputEl[i].classList.add("input--orange");
-  //     }
-  //   }
-  // }
 
   for (let i = 0; i < $guessInputEl.length; i++) {
     let $inputEl = $guessInputEl[i];
@@ -111,8 +99,63 @@ function renderMessage(messages) {
   $messageEl.innerHTML = messages;
 }
 
+let isOpen = false;
+function hideDescription() {
+  if (isOpen) {
+    // $description.style.animation = "showDescriptionBack 1s ease-in-out both";
+    isOpen = false;
+
+    $description.animate(
+      [
+        {
+          opacity: 1,
+          translate: "0px 0px",
+        },
+        {
+          opacity: 0,
+          translate: "0px -100%",
+        },
+      ],
+      {
+        duration: 800,
+        iterations: 1,
+        fill: "both",
+        easing: "ease-in-out",
+      }
+    );
+  } else {
+    // $description.style.animation = "showDescription 1s 1 ease-in-out both";
+    isOpen = true;
+
+    $description.animate(
+      [
+        {
+          opacity: 0,
+          translate: "0px -100%",
+        },
+        {
+          opacity: 1,
+          translate: "0px 0px",
+        },
+      ],
+      {
+        duration: 800,
+        iterations: 1,
+        fill: "both",
+        easing: "ease-in-out",
+      }
+    );
+  }
+  // if ($description.style.display === "none") {
+  //   $description.style.display = "block";
+  // } else {
+  //   $description.style.display = "none";
+  // }
+}
+
 $formEl.addEventListener("submit", guessTheNumber);
 $resetEl.addEventListener("click", reset);
+$clickDescription.addEventListener("click", hideDescription);
 
 for (let i = 0; i < $guessInputEl.length; ++i) {
   $guessInputEl[i].addEventListener("keydown", function (e) {
@@ -126,6 +169,8 @@ for (let i = 0; i < $guessInputEl.length; ++i) {
 }
 
 reset();
+
+//TRIVIA
 
 let answerTrivia;
 

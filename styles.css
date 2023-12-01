@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "SF Pro Display", sans-serif;
 }
 
 body {
@@ -9,41 +10,51 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: blueviolet;
+  padding: 3rem;
+  background: linear-gradient(167deg, #e9e5ff -0.45%, #f7ebe5 93.03%);
 }
 
 h1 {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #0a1057;
   padding-bottom: 1rem;
-  margin-bottom: 1rem;
+  font-family: "Bangers", serif;
+  text-align: center;
+  color: #0a1057;
+  margin-top: 1rem;
 }
+
 .container {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-}
-.wrapper {
-  background-color: white;
-  border-radius: 10px;
-  width: 430px;
-  margin-top: 5rem;
-  padding: 2rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  flex-direction: column;
+  gap: 3rem;
 }
 
-.input-field {
+.wrapper {
+  background-color: white;
+  text-align: center;
+  border-radius: 27.624px;
+  background: linear-gradient(180deg, #f7f6ff 0%, #fefefe 100%);
+  box-shadow: 0px 12.14815px 12.14815px 0px rgb(57 55 75 / 9%);
+  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 1;
+}
+
+.input-squares {
+  display: flex;
   gap: 1rem;
-  margin-top: 2rem;
 }
 
 .input {
   width: 50px;
-  height: 55px;
-  border: rgb(219, 219, 219) 1px solid;
+  height: 50px;
+  border: 0.86px solid #eaeaea;
+  background-color: #f3f5f7;
   text-align: center;
   font-size: 32px;
 }
@@ -53,22 +64,36 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-.input__button {
-  border: none;
-  border-radius: 4px;
-  padding: 1rem;
-  background-color: mediumaquamarine;
+.input:focus-visible {
+  border: 2px solid #8250fb;
 }
 
-.input__button:hover {
-  background-color: rgb(66, 135, 112);
-}
 .check {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
   justify-content: center;
   align-items: center;
   gap: 1rem;
 }
+
+.check h3 {
+  font-family: "Bargers", serif;
+  font-size: 32px;
+}
+
+.input__button {
+  border: none;
+  border-radius: 30.37px;
+  padding: 1rem;
+  background-color: #8250fb;
+  color: white;
+  font-weight: bold;
+}
+
+.input__button:hover {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
 .wrapper__counter {
   display: flex;
   justify-content: center;
@@ -108,16 +133,47 @@ input::-webkit-inner-spin-button {
 }
 
 .reset--button {
-  margin-top: 2rem;
   height: 3rem;
   width: 90%;
-  background-color: blueviolet;
+  border-radius: 35px;
+  background: #221248;
   color: white;
   font-size: large;
+  border: none;
 }
 
 .reset--button:hover {
-  background-color: rgb(39, 12, 65);
+  box-shadow: 6px 6px 23.9px 0px #12072c inset;
+}
+
+#clickDescription {
+  background-color: white;
+  border: none;
+  font-size: 1rem;
+  padding-bottom: 12px;
+}
+
+#clickDescription span {
+  color: #8250fb;
+}
+
+.description {
+  border-radius: 31.835px 31.835px;
+  background: linear-gradient(143deg, #c189ed 2.71%, #804ff8 95.87%);
+  color: white;
+  flex-shrink: 0;
+  padding: 32px;
+  position: relative;
+  top: -100px;
+  z-index: 0;
+  translate: 0px -100%;
+  opacity: 0;
+  /* transition: opacity 0.6s ease-in-out, translate 0.8s ease-in-out; */
+}
+
+.description h2 {
+  margin: 48px 0 24px 0;
+  font-family: Bangers;
 }
 
 .messages {
@@ -134,26 +190,6 @@ input::-webkit-inner-spin-button {
 
 .messages:empty {
   display: none;
-}
-
-.description {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  width: 80vw;
-  margin-top: 2rem;
-  background-color: rgb(129, 42, 211);
-  padding: 3rem;
-  border-radius: 5px;
-  font-size: 18px;
-  color: rgb(42, 10, 72);
-}
-.description-grid {
-  color: white;
-}
-
-.description h2 {
-  margin-bottom: 1rem;
 }
 
 #winningGiphy {
