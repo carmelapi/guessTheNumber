@@ -48,8 +48,8 @@ function guessTheNumber(e) {
     inputEl.push(Number($guessInputEl[i].value));
     $guessInputEl[i].classList.remove("input--green", "input--orange");
   }
-  console.log("inputEl", inputEl);
-  console.log("guessNumbers", guessNumbers);
+  // console.log("inputEl", inputEl);
+  // console.log("guessNumbers", guessNumbers);
 
   for (let i = 0; i < $guessInputEl.length; i++) {
     let $inputEl = $guessInputEl[i];
